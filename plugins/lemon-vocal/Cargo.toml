@@ -1,0 +1,33 @@
+[package]
+name = "lemon-vocal"
+description = "ML Vocal: Melodyne-style monophonic vocal pitch, formant, expression, and timing editor + live auto-tune as a VST3 / CLAP plugin"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+linked = []
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+rfd = "0.15"
+crossbeam-queue = "0.3"
+sha2 = "0.10"
+symphonia = { version = "0.6", default-features = false, features = ["wav", "adpcm", "pcm", "flac", "ogg", "vorbis", "mp3", "aiff", "id3v1", "id3v2"] }
+nih_plug = { git = "https://github.com/robbert-vdh/nih-plug.git", default-features = false, features = ["vst3"] }
+os-model.workspace = true
+os-hostlink.workspace = true
+os-plugkit = { path = "../../crates/os-plugkit" }
+os-ui = { path = "../../crates/os-ui" }
+os-theme = { path = "../../crates/os-theme" }
+os-paths.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Storage_FileSystem", "Win32_Graphics_Gdi", "Win32_UI_WindowsAndMessaging", "Win32_UI_Controls_Dialogs", "Win32_UI_Input_KeyboardAndMouse", "Win32_System_LibraryLoader", "Win32_UI_Shell", "Win32_System_DataExchange", "Win32_System_Memory", "Win32_System_Ole"] }
+
+[build-dependencies]
+cc = "1"

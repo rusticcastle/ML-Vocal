@@ -1,0 +1,44 @@
+name: Build VST3 & CLAP Plugins
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: ML-Vocal-Linux-x86_64
+          - os: macos-latest
+            artifact_name: ML-Vocal-macOS
+          - os: windows-latest
+            artifact_name: ML-Vocal-Windows-x86_64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run unit tests
+        run: cargo test -p lemon-vocal
+
+      - name: Build VST3 and CLAP bundles
+        run: cargo run -p bundle-plugins
+
+      - name: Upload VST3 & CLAP Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: |
+            target/bundled/ML Vocal.vst3
+            target/bundled/ML Vocal.clap
