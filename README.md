@@ -2,7 +2,7 @@
 
 **ML Vocal** is a native, open-source (**GPL-3.0-or-later**) monophonic vocal pitch, formant, expression, and timing editor — plus a real-time low-latency Auto-Tune processor — built in Rust and C++17 as a standalone **VST3** and **CLAP** plugin for **Linux**, **macOS**, and **Windows**.
 
-Extracted and engineered from the ML Studio vocal engine, **ML Vocal** statically embeds both the **WORLD** high-precision vocoder (Harvest F0 + CheapTrick spectral envelope + D4C aperiodicity) and the **SnapTune** real-time pitch corrector into a single zero-dependency plugin binary.
+Extracted and adapted from the ML Studio vocal editor, **ML Vocal** statically embeds both the **WORLD** high-precision vocoder (Harvest F0 + CheapTrick spectral envelope + D4C aperiodicity) and the **SnapTune** real-time pitch corrector into a single zero-dependency plugin binary.
 
 ---
 
@@ -73,9 +73,16 @@ cargo test -p lemon-vocal
 
 ---
 
-## Architecture & Engineering Journal
+## Architecture & Vibe Coding Journal
 
-See [ML_VOCAL_ENGINEERING_JOURNAL.md](ML_VOCAL_JOURNAL.md) for a deep technical walkthrough of the DSP pipeline, static C++ FFI bridge, incremental region resynthesis, WSOLA time-warping, and GUI architecture.
+See [ML_VOCAL_JOURNAL.md](ML_VOCAL_JOURNAL.md) for a complete walkthrough of the DSP pipeline, static C++ FFI bridge, incremental region resynthesis, WSOLA time-warping, and GUI architecture.
+
+## Credits & Acknowledgments
+
+- **[Michael Lane](https://michaellanemusic.de/ml-studio/)** ([Dorfhaus/ML-Studio](https://github.com/Dorfhaus/ML-Studio)) — Maintainer of **ML Studio**, from which this standalone vocal plugin was extracted and adapted.
+- **[ItsAlphaNeon and contributors](https://github.com/ItsAlphaNeon/Lemon-Studio)** — Creators of **Lemon Studio**, the foundational open-source DAW architecture, UI toolkit (`os-ui`, `os-plugkit`, `os-theme`), and vocal engine model (`os-model`).
+- **Masanori Morise** — Creator of the **WORLD** high-quality speech analysis, manipulation, and synthesis vocoder (`tools/vocal-engine/vendor/world`, Modified BSD License).
+- **Robbert van der Helm** — Creator of [`nih-plug`](https://github.com/robbert-vdh/nih-plug), the Rust VST3 and CLAP plugin framework.
 
 ## License
 
