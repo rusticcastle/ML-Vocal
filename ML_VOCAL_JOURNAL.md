@@ -4,7 +4,7 @@
 **Project:** ML Studio `2026.11.11.2` → `plugins/lemon-vocal` (`ML Vocal.vst3` / `ML Vocal.clap`)  
 **Target Platform:** Linux (`x86_64`, X11 GUI, VST3 & CLAP 64-bit bundles, cross-platform ready for macOS & Windows)  
 **License:** GPL-3.0-or-later  
-**Upstream Credits:** [Michael Lane — ML Studio](https://github.com/Dorfhaus/ML-Studio) ([michaellanemusic.de/ml-studio](https://michaellanemusic.de/ml-studio/)) & [ItsAlphaNeon — Lemon Studio](https://github.com/ItsAlphaNeon/Lemon-Studio)  
+**Upstream Credits:** [Michael Lane: ML Studio](https://github.com/Dorfhaus/ML-Studio) ([michaellanemusic.de/ml-studio](https://michaellanemusic.de/ml-studio/)) & [ItsAlphaNeon: Lemon Studio](https://github.com/ItsAlphaNeon/Lemon-Studio)  
 
 ---
 
@@ -78,23 +78,23 @@ flowchart TD
 ### 2.1 Data Model (`crates/os-model/src/vocal.rs`)
 - **`STEP = 0.005` (5 ms):** The fundamental frame period of the vocal analysis. Every 5 milliseconds of audio has an analyzed fundamental frequency (`f0` in MIDI note space, or `0.0` if unvoiced) and an RMS amplitude envelope value (`amp`).
 - **`Note` struct:** Represents a segmented voiced note ("blob") over frame range `[start..end)` with per-note non-destructive parameters:
-  - `base: f32` — Detected median MIDI pitch of the note.
-  - `shift: f32` — Semitone pitch shift (`-36..+36 st`).
-  - `modulation: f32` — Vibrato / pitch modulation depth (`0.0 = flat robotic`, `1.0 = natural`, `2.0 = exaggerated`).
-  - `drift: f32` — Slow pitch drift control (`0.0 = corrected`, `1.0 = original`).
-  - `transition: f32` — Note-to-note pitch transition smoothing (`0..1`).
-  - `formant: f32` — Spectral envelope formant shift in semitones (`-12..+12 st`).
-  - `gain_db: f32` — Per-note amplitude adjustment (`-24..+18 dB`).
-  - `time_offset: f32` — Per-note timing shift in seconds (`-0.5..+0.5 s`).
-  - `attack: f32` — Note onset speed (`-1..+1`).
-  - `muted: bool` — Per-note mute state.
+  - `base: f32`: Detected median MIDI pitch of the note.
+  - `shift: f32`: Semitone pitch shift (`-36..+36 st`).
+  - `modulation: f32`: Vibrato / pitch modulation depth (`0.0 = flat robotic`, `1.0 = natural`, `2.0 = exaggerated`).
+  - `drift: f32`: Slow pitch drift control (`0.0 = corrected`, `1.0 = original`).
+  - `transition: f32`: Note-to-note pitch transition smoothing (`0..1`).
+  - `formant: f32`: Spectral envelope formant shift in semitones (`-12..+12 st`).
+  - `gain_db: f32`: Per-note amplitude adjustment (`-24..+18 dB`).
+  - `time_offset: f32`: Per-note timing shift in seconds (`-0.5..+0.5 s`).
+  - `attack: f32`: Note onset speed (`-1..+1`).
+  - `muted: bool`: Per-note mute state.
 - **`Edit` struct:** Holds `f0: Vec<f32>`, `amp: Vec<f32>`, `notes: Vec<Note>`, `curve: Vec<(usize, f32)>` (freehand drawn pitch points), `strength: f32`, `formant: f32`, `root: u8`, `scale: u8`, and `enabled: bool`.
 - Crucially, `Edit::pitches(&self)` and `Edit::formants(&self)` compute the exact per-5ms-frame target MIDI contour and formant contour, including smooth raised-cosine transitions between adjacent notes.
 
 ### 2.2 The C++ WORLD Vocoder Subprocess (`tools/vocal-engine`)
 - In the full DAW, `tools/vocal-engine` was built as an external executable (`ml-vocal-engine`) invoked over `stdin`/`stdout` pipes.
 - However, inspecting `tools/vocal-engine/bridge.cpp` revealed clean `extern "C"` functions:
-  - `lemon_vocal_analyze(...)`: Runs WORLD's **Harvest** pitch estimator (`65 Hz – 1046 Hz`, 5 ms frame period) and computes per-frame RMS amplitude.
+  - `lemon_vocal_analyze(...)`: Runs WORLD's **Harvest** pitch estimator (`65 Hz - 1046 Hz`, 5 ms frame period) and computes per-frame RMS amplitude.
   - `lemon_vocal_render(...)`: Runs **Harvest**, **CheapTrick** (spectral envelope estimation), and **D4C** (aperiodicity estimation), resamples the spectral envelope along the frequency axis for formant shifting (`pow(2.0, formant_semitones / 12.0)`), shifts `f0` for pitch correction, and synthesizes the modified waveform via WORLD's `Synthesis(...)`.
 
 ### 2.3 Host Orchestration (`crates/os-engine/src/vocal.rs`)
@@ -303,7 +303,7 @@ Running `bundle-plugins --only lemon-vocal --install` produced optimized release
 ### Keyboard & Mouse Shortcuts in `ML Vocal`
 | Input | Action |
 | :--- | :--- |
-| **`1` – `9`, `0`** | Switch between tools: `1` Main, `2` Pitch, `3` Modulation, `4` Drift, `5` Transition, `6` Formant, `7` Amplitude, `8` Time, `9` Attack, `0` Split |
+| **`1` - `9`, `0`** | Switch between tools: `1` Main, `2` Pitch, `3` Modulation, `4` Drift, `5` Transition, `6` Formant, `7` Amplitude, `8` Time, `9` Attack, `0` Split |
 | **Right-Click on Grid** | Open floating Quick Tool Palette at cursor |
 | **Drag Note (Main / Pitch)** | Shift pitch in semitones (snaps to active scale when `Snap` is on; hold `Alt` to temporarily bypass snap) |
 | **Double-Click Note** | Quantize note pitch to nearest scale degree (or reset parameter in parameter tools) |

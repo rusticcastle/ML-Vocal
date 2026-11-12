@@ -1,6 +1,6 @@
-# ML Vocal: Melodyne-Style Vocal Editor & Live Auto-Tune (VST3 / CLAP)
+# ML Vocal: Standalone Melodyne-Style Vocal Editor & Live Auto-Tune (VST3 / CLAP)
 
-**ML Vocal** is a native, open-source (**GPL-3.0-or-later**) monophonic vocal pitch, formant, expression, and timing editor — plus a real-time low-latency Auto-Tune processor — built in Rust and C++17 as a standalone **VST3** and **CLAP** plugin for **Linux**, **macOS**, and **Windows**.
+**ML Vocal** is a native, open-source (**GPL-3.0-or-later**) monophonic vocal pitch, formant, expression, and timing editor: plus a real-time low-latency Auto-Tune processor: built in Rust and C++17 as a standalone **VST3** and **CLAP** plugin for **Linux**, **macOS**, and **Windows**.
 
 Extracted and adapted from the ML Studio vocal editor, **ML Vocal** statically embeds both the **WORLD** high-precision vocoder (Harvest F0 + CheapTrick spectral envelope + D4C aperiodicity) and the **SnapTune** real-time pitch corrector into a single zero-dependency plugin binary.
 
@@ -9,7 +9,7 @@ Extracted and adapted from the ML Studio vocal editor, **ML Vocal** statically e
 ## Key Features
 
 - **Full 13-Tool Melodyne-Style Editing Workflow:**
-  1. **Main Tool (`1`):** Context-aware smart tool — drag note body for pitch, drag left/right edges for note timing, double-click upper edge to split, double-click body to snap to scale.
+  1. **Main Tool (`1`):** Context-aware smart tool: drag note body for pitch, drag left/right edges for note timing, double-click upper edge to split, double-click body to snap to scale.
   2. **Pitch Tool (`2`):** Fine or quantized semitone/cent pitch shifting (`Alt`-drag for fine cents override).
   3. **Modulation Tool (`3`):** Scale natural vibrato & pitch modulation from `0%` (robotic flat) to `200%` (exaggerated).
   4. **Pitch Drift Tool (`4`):** Tame slow pitch drift within sustained notes (`0%` = rock-solid center, `100%` = natural drift).
@@ -58,7 +58,7 @@ cargo test -p lemon-vocal
 
 | Shortcut | Action |
 | :--- | :--- |
-| **`1` – `9`, `0`** | Select editing tool (`1` Main, `2` Pitch, `3` Modulation, `4` Drift, `5` Transition, `6` Formant, `7` Amplitude, `8` Time, `9` Attack, `0` Split) |
+| **`1` - `9`, `0`** | Select editing tool (`1` Main, `2` Pitch, `3` Modulation, `4` Drift, `5` Transition, `6` Formant, `7` Amplitude, `8` Time, `9` Attack, `0` Split) |
 | **Right-Click on Grid** | Open floating Quick Tool Palette at cursor |
 | **Drag Note (`Main` / `Pitch`)** | Shift pitch in semitones (hold `Alt` for fine cent adjustment without scale snap) |
 | **Double-Click Note** | Snap note to nearest active scale pitch (or reset active tool parameter) |
@@ -79,10 +79,10 @@ See [ML_VOCAL_JOURNAL.md](ML_VOCAL_JOURNAL.md) for a complete walkthrough of the
 
 ## Credits & Acknowledgments
 
-- **[Michael Lane](https://michaellanemusic.de/ml-studio/)** ([Dorfhaus/ML-Studio](https://github.com/Dorfhaus/ML-Studio)) — Maintainer of **ML Studio**, from which this standalone vocal plugin was extracted and adapted.
-- **[ItsAlphaNeon and contributors](https://github.com/ItsAlphaNeon/Lemon-Studio)** — Creators of **Lemon Studio**, the foundational open-source DAW architecture, UI toolkit (`os-ui`, `os-plugkit`, `os-theme`), and vocal engine model (`os-model`).
-- **Masanori Morise** — Creator of the **WORLD** high-quality speech analysis, manipulation, and synthesis vocoder (`tools/vocal-engine/vendor/world`, Modified BSD License).
-- **Robbert van der Helm** — Creator of [`nih-plug`](https://github.com/robbert-vdh/nih-plug), the Rust VST3 and CLAP plugin framework.
+- **[Michael Lane](https://michaellanemusic.de/ml-studio/)** ([Dorfhaus/ML-Studio](https://github.com/Dorfhaus/ML-Studio)): Maintainer of **ML Studio**, from which this standalone vocal plugin was extracted and adapted.
+- **[ItsAlphaNeon and contributors](https://github.com/ItsAlphaNeon/Lemon-Studio)**: Creators of **Lemon Studio**, the foundational open-source DAW architecture, UI toolkit (`os-ui`, `os-plugkit`, `os-theme`), and vocal engine model (`os-model`).
+- **Masanori Morise**: Creator of the **WORLD** high-quality speech analysis, manipulation, and synthesis vocoder (`tools/vocal-engine/vendor/world`, Modified BSD License).
+- **Robbert van der Helm**: Creator of [`nih-plug`](https://github.com/robbert-vdh/nih-plug), the Rust VST3 and CLAP plugin framework.
 
 ## License
 
