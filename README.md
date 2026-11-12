@@ -75,7 +75,7 @@ cargo test -p lemon-vocal
 
 ## Architecture & Engineering Journal
 
-See [ML_VOCAL_ENGINEERING_JOURNAL.md](ML_VOCAL_ENGINEERING_JOURNAL.md) for a deep technical walkthrough of the DSP pipeline, static C++ FFI bridge, incremental region resynthesis, WSOLA time-warping, and GUI architecture.
+See [ML_VOCAL_ENGINEERING_JOURNAL.md](ML_VOCAL_JOURNAL.md) for a deep technical walkthrough of the DSP pipeline, static C++ FFI bridge, incremental region resynthesis, WSOLA time-warping, and GUI architecture.
 
 ## License
 
