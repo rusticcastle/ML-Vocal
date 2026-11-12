@@ -1,4 +1,4 @@
-# Engineering Journal: Extracting ML Studio's Melodyne-Style Vocal Editor into a Standalone VST3 & CLAP Plugin (`ML Vocal`)
+# Extracting ML Studio's Melodyne-Style Vocal Editor into a Standalone VST3 & CLAP Plugin (`ML Vocal`)
 
 **Date:** November 13, 2026  
 **Project:** ML Studio `2026.11.11.2` → `plugins/lemon-vocal` (`ML Vocal.vst3` / `ML Vocal.clap`)  
