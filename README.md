@@ -1,4 +1,4 @@
-# ML Vocal: Standalone Melodyne-Style Vocal Editor & Live Auto-Tune (VST3 / CLAP)
+# ML Vocal: Melodyne-Style Vocal Editor & Live Auto-Tune (VST3 / CLAP)
 
 **ML Vocal** is a native, open-source (**GPL-3.0-or-later**) monophonic vocal pitch, formant, expression, and timing editor: plus a real-time low-latency Auto-Tune processor: built in Rust and C++17 as a standalone **VST3** and **CLAP** plugin for **Linux**, **macOS**, and **Windows**.
 
